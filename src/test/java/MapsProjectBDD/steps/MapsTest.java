@@ -52,13 +52,13 @@ public class MapsTest {
 
 	}
 
-	@When("I write Dublin on Search bar and press Enter")
-	public void I_write_on_Search_bar_and_press_Enter() {
+	@When("I write {string} on Search bar and press Enter")
+	public void I_write_on_Search_bar_and_press_Enter(String location) {
 
 		waitSearch = new WebDriverWait(driver, Duration.ofSeconds(10))
 				.until(ExpectedConditions.elementToBeClickable(searchBar));
 		waitSearch.clear();
-		waitSearch.sendKeys("Dublin");
+		waitSearch.sendKeys(location);
 
 		waitSearch.sendKeys(Keys.ENTER);
 
@@ -71,8 +71,8 @@ public class MapsTest {
 
 	}
 
-	@Then("I should have Dublin on the title")
-	public void I_should_have_Dublin_on_the_title() {
+	@Then("I should have {string} on the title")
+	public void I_should_have_Dublin_on_the_title(String location) {
 
 		waitDublinTitle = new WebDriverWait(driver, Duration.ofSeconds(10))
 				.until(ExpectedConditions.visibilityOfElementLocated(dublinTitle));
@@ -104,8 +104,8 @@ public class MapsTest {
 		}
 	}
 
-	@And("I should have Dublin has destination")
-	public void i_should_have_dublin_has_destination() {
+	@And("I should have {string} has destination")
+	public void i_should_have_dublin_has_destination(String location) {
 
 		waitDublinDestination = new WebDriverWait(driver, Duration.ofSeconds(10))
 				.until(ExpectedConditions.visibilityOfElementLocated(dublinDestination));
