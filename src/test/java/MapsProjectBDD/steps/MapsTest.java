@@ -1,5 +1,8 @@
 package MapsProjectBDD.steps;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.time.Duration;
 
 //import org.junit.Assert;
@@ -77,8 +80,12 @@ public class MapsTest {
 		waitDublinTitle = new WebDriverWait(driver, Duration.ofSeconds(10))
 				.until(ExpectedConditions.visibilityOfElementLocated(dublinTitle));
 
-		String text = waitDublinTitle.getText();
-		System.out.println("A cidade encontrada é: " + text);
+		String actualLocation = waitDublinTitle.getText();
+		String expectedLocation = location;
+		
+		assertEquals(expectedLocation, actualLocation);
+			
+		System.out.println("A cidade no titulo é: " + actualLocation);
 
 		try {
 			Thread.sleep(1000);
@@ -110,8 +117,13 @@ public class MapsTest {
 		waitDublinDestination = new WebDriverWait(driver, Duration.ofSeconds(10))
 				.until(ExpectedConditions.visibilityOfElementLocated(dublinDestination));
 
-		String text = waitDublinDestination.getAttribute("value");
-		System.out.println("O destino encontrado é: " + text);
+		String actualDestination = waitDublinDestination.getAttribute("value");
+		String expectedDestination = location;
+		
+		assertTrue(actualDestination.startsWith(expectedDestination));
+		
+		System.out.println("A cidade no titulo é: " + actualDestination);
+	
 
 		try {
 			Thread.sleep(5000);
